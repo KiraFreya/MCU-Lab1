@@ -5,7 +5,7 @@ int main(void)
 {
     DDRD = 0b00001000; //set D3 as output
 	  PORTD = 0b00001000;  //set D3 to high
-	    
+	    rftgyhj
 	  while(1){
 	  	 PORTD |= 0b00001000;  //LED on
 	  	 _delay_ms(500);
