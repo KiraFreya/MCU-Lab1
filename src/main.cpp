@@ -13,6 +13,5 @@ int main(void)
 	  	 PORTD = 0x00;  //LED off
 	  	 _delay_ms(500);
 	  }
-  
 	  return 0;
 }
