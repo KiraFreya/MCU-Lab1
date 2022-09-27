@@ -1,25 +1,26 @@
-// #include <avr/io.h>
-// #include <util/delay.h>
+/*       
+ #include <avr/io.h>
+ #include <util/delay.h>
 
-// int main(void)
-// {
-//     DDRD = 0b00001000; //set PD3 - LED - as output
-// 	PORTD = 0b00000100;  // PUD, additional setup to enable input
+ int main(void)
+ {
+     DDRD = 0b00001000; //set PD3 - LED - as output
+ 	PORTD = 0b00000100;  // PUD, additional setup to enable input
 	    
-// 	while(1){
-// 		if ((PIND & 0b00000100) == 0b00000100){ //Check if button is not pressed
-// 	  	 	PORTD |= 0b00001000;  //LED on
-// 	  	 	_delay_ms(500);
+ 	while(1){
+		if ((PIND & 0b00000100) == 0b00000100){ //Check if button is not pressed
+	  	 	PORTD |= 0b00001000;  //LED on
+ 	  	 	_delay_ms(500);
   
-// 	  	 	PORTD &=~ 0b00001000;  //LED off
-// 	  	 	_delay_ms(500);
-// 		}
-// 		else{          //button is pressed
-// 			PORTD &=~ 0b00001000;
-// 		}
-// 	}
-// 	return 0;
-// }
+ 	  	 	PORTD &=~ 0b00001000;  //LED off
+ 	  	 	_delay_ms(500);
+ 		}
+ 		else{          //button is pressed
+ 			PORTD &=~ 0b00001000;
+ 		}
+ 	}
+ 	return 0;
+*/
 
 
 #include <avr/io.h>
@@ -31,18 +32,18 @@ int main(void)
 	PORTD = 0b00000100;  // PUD, additional setup to enable input
 	    
 	while(1){
-	    if ((PIND & 0b00000100) == 0b00000100){ //Check if button is not pressed
-			PORTD = (1 << PORTD3) | (0 << PORTD4); //turn on LED1 and turn off LED2
+	    if ((PIND & 0b00000100) == 0b00000100){ // button is not pressed
+			PORTD |= (1 << PORTD3); //turn on LED1 and turn off LED2
 	  	 	_delay_ms(500);
   
-	  	 	PORTD = 0b00000000;  //LED off
+	  	 	PORTD &=~(1 << PORTD3);  //LED off
 	  	 	_delay_ms(500);
-	}
-	    else if ((PIND & 0b00000100) == 0b00000000){ //Check if button is pressed
-			PORTD = (0 << PORTD3) | (1 << PORTD4); //turn off LED1 and turn o LED2
+		}
+	    else{ // button is pressed
+			PORTD |= (1 << PORTD4); //turn off LED1 and turn o LED2
 	  	 	_delay_ms(500);
   
-	  	 	PORTD = 0b00000000;  //LED off
+	  	 	PORTD &=~(1 << PORTD4);;  //LED off
 	  	 	_delay_ms(500);
 	     }
 	}
